@@ -1,23 +1,34 @@
 import "./App.css";
-import { Container } from "react-bootstrap";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import TopBar from "./components/TopBar";
+import About from "./components/About";
+import Contact from "./components/Contact";
+import Policy from "./components/Policy";
+import NavBar from "./components/NavBar";
+import HomeScreen from "./screens/HomeScreen";
+import CartScreen from "./screens/CartScreen";
+import Registe from "./screens/Registe";
+import Login from "./screens/Login";
+import OrderScreen from "./screens/OrderScreen";
+import AdminScreen from "./screens/AdminScreen";
 
 function App() {
   return (
-    <>
-      <Container style={{ marginTop: "200px" }}>
-        <h4 className="text-center text-dark bg-warning p-2 mt-4"> Welcome To</h4>
-        <h1 className="text-center text-white bg-dark p-2 mt-4">
-          LaMorgan"S Pizza
-        </h1>
-        <h2 className="m-4 text-center">
-          follow on Instagram :
-          <strong style={{ color: "blue" }}> @LaMorgan"s_Pizza</strong>
-        </h2>
-        <h1>
-         
-        </h1>
-      </Container>
-    </>
+    <BrowserRouter>
+      <TopBar />
+      <NavBar />
+      <Switch>
+        <Route path="/admin" component={AdminScreen} />
+        <Route path="/orders" component={OrderScreen} exact />
+        <Route path="/login" component={Login} exact />
+        <Route path="/register" component={Registe} exact />
+        <Route path="/cart" component={CartScreen} exact />
+        <Route path="/about" component={About} exact />
+        <Route path="/contact" component={Contact} exact />
+        <Route path="/policy" component={Policy} exact />
+        <Route path="/" component={HomeScreen} />
+      </Switch>
+    </BrowserRouter>
   );
 }
 
